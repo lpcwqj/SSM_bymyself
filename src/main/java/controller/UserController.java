@@ -40,6 +40,7 @@ public class UserController {
             model.addAttribute("msg","Password cannot be empty");
             return "login";
         }
+        //因为是根据用户名查询的user集合，若集合不存在则说明输入的用户名不存在
         User user = userService.checkUserByUsername(username);
         if (user == null){
             model.addAttribute("msg","User does not exist");
@@ -49,6 +50,7 @@ public class UserController {
             model.addAttribute("msg","Password is wrong");
             return "login";
         }
+        //存入session域，用于一次会话
         request.getSession().setAttribute("username",username);
         request.getSession().setAttribute("password",password);
         return "redirect:home";
@@ -69,6 +71,8 @@ public class UserController {
 
     /**
      * 模糊查询 分页显示
+     *
+     * 此分页和主页的分页采用同一种方法，主页的分页的username传值null，该页的分页传值为用户输入的username
      */
     @RequestMapping("fuzzyQuery")
     public String fuzzyQuery(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
