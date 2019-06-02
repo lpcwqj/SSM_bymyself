@@ -56,16 +56,43 @@ public class UserController {
 
     /**
      * 跳转到主页面
+     * 实现分页显示
      */
     @RequestMapping("index")
     public String findAll(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
-                          Model model,
-                          HttpServletRequest request)
+                          Model model)
     {
-        String username = request.getParameter("username");
-        PageUtils<User> page = userService.findByPage(currentPage,username);
+        PageUtils<User> page = userService.findByPage(currentPage,null);
         model.addAttribute("page",page);
         return "index";
+    }
+
+    /**
+     * 模糊查询 分页显示
+     */
+    @RequestMapping("fuzzyQuery")
+    public String fuzzyQuery(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
+                             Model model,
+                             HttpServletRequest request){
+        //获取输入的模糊字段
+        String username = request.getParameter("username");
+        //获取session中的模糊字段名
+        //当点击下一页请求时，只传来currentPage值，username的值得从session中获取
+
+        //第一次访问fuzzyQuery页面时，即第一页，模糊字段存入session中
+        if (!"".equals(username) && username!=null){
+            request.getSession().setAttribute("username",username);
+            PageUtils<User> page = userService.findByPage(currentPage,username);
+            model.addAttribute("page1",page);
+        }
+        //当点击下一页时 获取session中的模糊字段
+        //此时 查询的两个条件齐了.currentPage是前台传过来的,username是获取之前存入session中、用户输入的模糊字段
+        else {
+            String username1 = (String) request.getSession().getAttribute("username");
+            PageUtils<User> page = userService.findByPage(currentPage,username1);
+            model.addAttribute("page1",page);
+        }
+        return "fuzzyQuery";
     }
 
     /**

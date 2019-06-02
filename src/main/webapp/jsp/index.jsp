@@ -12,8 +12,8 @@
     <title>paging</title>
 </head>
 <body>
-<form id="form0" name="form1" method="post" action="/index">
-    username: <input type="text" name="username" value="Query by username">&nbsp;&nbsp;
+<form id="form0" name="form1" method="post" action="/fuzzyQuery">
+    username: <input type="text" name="username" placeholder="Query by username">&nbsp;&nbsp;
     <%--rolename: <input type="text" name="id">&nbsp;&nbsp;--%>
     <input type="submit" value="Query">
 </form>

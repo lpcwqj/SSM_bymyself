@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserService {
     /**
-     * 分页方法
+     * 主页,分页
      * @param currentPage
      * @return
      */
@@ -53,4 +53,12 @@ public interface UserService {
      */
     User checkUserByUsername(String username);
 
+    /**
+     * 根据用户名模糊查询
+     * 分页显示
+     * @param currentPage
+     * @param username
+     * @return
+     */
+//    PageUtils<User> fuzzyQuery(Integer currentPage, String username);
 }
