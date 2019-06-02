@@ -14,7 +14,7 @@ public interface UserService {
      * @param currentPage
      * @return
      */
-    PageUtils<User> findByPage(int currentPage);
+    PageUtils<User> findByPage(int currentPage,String username);
 
     /**
      * 修改信息
@@ -42,13 +42,6 @@ public interface UserService {
     void add(User user);
 
     /**
-     * 模糊查询
-     * @param user
-     * @return
-     */
-    PageUtils<User> vagueQuery(User user);
-
-    /**
      * 批量删除 参数绑定数组
      * @param ids
      */
@@ -59,4 +52,5 @@ public interface UserService {
      * @param username
      */
     User checkUserByUsername(String username);
+
 }

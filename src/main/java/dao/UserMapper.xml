@@ -13,13 +13,21 @@
   <select id="findAllRecords" resultType="int">
     select count(*)
     from tb_user
+    <where>
+        <if test="username != null and username != ''">
+            userName like '%${username}%'
+        </if>
+    </where>
   </select>
   <select id="findLists" resultMap="BaseResultMap">
     select *
     from tb_user
-    <if test="start!=null and size!=null">
+      <where>
+          <if test="username != null and username != ''">
+              userName like '%${username}%'
+          </if>
+      </where>
       limit #{start},#{size}
-    </if>
   </select>
     <update id="update" parameterType="User">
         update tb_user
@@ -97,18 +105,6 @@
             </if>
         </trim>
     </insert>
-    <select id="vagueQuery" resultMap="BaseResultMap">
-        select *
-        from tb_user
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="username != null and username != ''">
-                and userName like '%${username}%'
-            </if>
-        </where>
-    </select>
     <delete id="batchDeletion">
         delete from tb_user
         where id in

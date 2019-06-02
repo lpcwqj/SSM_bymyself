@@ -8,7 +8,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>修改用户信息</title>
+    <title>edit</title>
 </head>
 <%--<script src="../js/jquery-2.1.0.js"></script>--%>
 <body>
@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td colspan="1"></td>
-            <td><input type="submit" value="提交"></td>
+            <td><input type="submit" value="submit"></td>
         </tr>
     </table>
 </form>

@@ -9,14 +9,13 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>分页</title>
+    <title>paging</title>
 </head>
 <body>
-<form id="form0" name="form1" method="post" action="/vagueQuery">
-    id: <input type="text" name="id">&nbsp;&nbsp;
-    用户名: <input type="text" name="username">&nbsp;&nbsp;
-    <input type="submit" value="筛选">
-    <button><a href="../jsp/add.jsp">添加用户</a></button>
+<form id="form0" name="form1" method="post" action="/index">
+    username: <input type="text" name="username" value="Query by username">&nbsp;&nbsp;
+    <%--rolename: <input type="text" name="id">&nbsp;&nbsp;--%>
+    <input type="submit" value="Query">
 </form>
 
 <form id="form1" name="form1" method="post" action="/batchDeletion">
@@ -41,29 +40,33 @@
                 <td>${user.email}</td>
                 <td>${user.phone}</td>
                 <td>${user.rolename}</td>
-                <td><button><a href="/toEdit?id=${user.id}">修改</a></button></td>
-                <td><button><a href="/delete?id=${user.id}">删除</a></button></td>
+                <td><button><a href="/toEdit?id=${user.id}">edit</a></button></td>
+                <td><button><a href="/delete?id=${user.id}">delete</a></button></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-    <button type="submit" name="deletes">批量删除</button>
+    <button type="submit" name="deletes">BatchDeletion</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button><a href="../jsp/add.jsp">AddUser</a></button>
+
 
     <table align="center">
         <tr>
         <td>
             <span>
-                当前是第${page.currentPage}页，共${page.totalPage}页，总记录数是${page.totalRecord}，每页显示${page.pageSize}条记录，
+                The current page is ${page.currentPage},with ${page.totalPage} page and ${page.totalRecord} records.Each page shows ${page.pageSize} records
             </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
                 <c:if test="${page.currentPage != 1}">
-                    <a href="/index?currentPage=1">首页</a>
-                    <a href="/index?currentPage=${page.currentPage-1}">上一页</a>
+                    <a href="/index?currentPage=1">Home</a>
+                    <a href="/index?currentPage=${page.currentPage-1}">Previous</a>
                 </c:if>
                 <c:if test="${page.currentPage != page.totalPage}">
-                    <a href="/index?currentPage=${page.currentPage+1} ">下一页</a>
-                    <a href="/index?currentPage=${page.totalPage}">尾页</a>
+                    <a href="/index?currentPage=${page.currentPage+1} ">Next</a>
+                    <a href="/index?currentPage=${page.totalPage}">End</a>
                 </c:if>
             </span>
         </td>
@@ -74,7 +77,7 @@
 <form action="/outLogin">
     <table align="right">
         <tr>
-            <td><input type="submit" value="退出登录"></td>
+            <td><input type="submit" value="logout"></td>
         </tr>
     </table>
 </form>

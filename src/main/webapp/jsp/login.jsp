@@ -6,7 +6,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>登录</title>
+    <title>login</title>
 </head>
 <body>
 <form action="/login" method="post">
@@ -21,8 +21,8 @@
     </tr>
     <tr>
         <td colspan="1"></td>
-        <td><input type="submit" value="提 交">
-            <input type="reset" value="重 置">
+        <td><input type="submit" value="submit">
+            <input type="reset" value="reset">
         </td>
     </tr>
     </table>

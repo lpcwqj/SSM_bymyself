@@ -21,19 +21,19 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public PageUtils<User> findByPage(int currentPage){
+    public PageUtils<User> findByPage(int currentPage,String username){
         PageUtils<User> pageUtils = new PageUtils<User>();
         //定义每页显示的记录数
         int pageSize = 5;
         //查询总记录数
-        int totalRecord = userMapper.findAllRecords();
+        int totalRecord = userMapper.findAllRecords(username);
         //转成double类型方便查询总页数
         double tr = totalRecord;
         //查询总页数
         int totalPage = (int)Math.ceil(tr/pageSize);
         //查询每页显示的结果集  limit关键字设置从哪开始 查询几条 mysql中起始索引从0开始
         int start = (currentPage-1) * pageSize;
-        List<User> lists = userMapper.findLists(start, pageSize);
+        List<User> lists = userMapper.findLists(start,pageSize,username);
 
         //开始封装
         pageUtils.setCurrentPage(currentPage);
@@ -66,14 +66,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageUtils<User> vagueQuery(User user) {
-        PageUtils<User> pageUtils = new PageUtils<>();
-        List<User> list = userMapper.vagueQuery(user);
-        pageUtils.setList(list);
-        return pageUtils;
-    }
-
-    @Override
     public void batchDeletion(Integer[] ids) {
         userMapper.batchDeletion(ids);
     }
@@ -82,4 +74,5 @@ public class UserServiceImpl implements UserService {
     public User checkUserByUsername(String username) {
        return userMapper.checkUserByUsername(username);
     }
+
 }

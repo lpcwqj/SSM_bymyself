@@ -33,20 +33,20 @@ public class UserController {
                              HttpServletRequest request)
     {
         if ("".equals(username)){
-            model.addAttribute("msg","用户名不能为空");
+            model.addAttribute("msg","User name cannot be empty");
             return "login";
         }
         if("".equals(password)){
-            model.addAttribute("msg","密码不能为空");
+            model.addAttribute("msg","Password cannot be empty");
             return "login";
         }
         User user = userService.checkUserByUsername(username);
         if (user == null){
-            model.addAttribute("msg","用户不存在");
+            model.addAttribute("msg","User does not exist");
             return "login";
         }
         else if (!user.getPassword().equals(password)&&!"".equals(user.getPassword())){
-            model.addAttribute("msg","密码错误");
+            model.addAttribute("msg","Password is wrong");
             return "login";
         }
         request.getSession().setAttribute("username",username);
@@ -58,9 +58,12 @@ public class UserController {
      * 跳转到主页面
      */
     @RequestMapping("index")
-    public String findAll(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage, Model model)
+    public String findAll(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
+                          Model model,
+                          HttpServletRequest request)
     {
-        PageUtils<User> page = userService.findByPage(currentPage);
+        String username = request.getParameter("username");
+        PageUtils<User> page = userService.findByPage(currentPage,username);
         model.addAttribute("page",page);
         return "index";
     }
@@ -69,7 +72,8 @@ public class UserController {
      * 跳转到编辑页面 回显数据
      */
     @RequestMapping("toEdit")
-    public String selectUserById(@RequestParam(value = "id") Integer id,Model model)
+    public String selectUserById(@RequestParam(value = "id") Integer id,
+                                 Model model)
     {
         User user = userService.selectUserById(id);
         model.addAttribute("user",user);
@@ -114,17 +118,6 @@ public class UserController {
     {
         userService.add(user);
         return "redirect:/index";
-    }
-
-    /**
-     * 模糊查询 根据username或id
-     */
-    @RequestMapping("vagueQuery")
-    public String vagueQuery(User user, Model model)
-    {
-        PageUtils<User> page = userService.vagueQuery(user);
-        model.addAttribute("page",page);
-        return "index";
     }
 
     /**

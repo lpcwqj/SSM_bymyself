@@ -18,7 +18,7 @@ public interface UserMapper {
      * 查询所有用户信息
      * @return
      */
-    int findAllRecords();
+    int findAllRecords(@Param("username") String username);
 
     /**
      * limit关键字 分页
@@ -26,7 +26,9 @@ public interface UserMapper {
      * @param size
      * @return
      */
-    List<User> findLists(@Param("start") int start,@Param("size") int size);
+    List<User> findLists(@Param("start") int start,
+                         @Param("size") int size,
+                         @Param("username") String username);
 
     /**
      * 修改用户信息
@@ -54,13 +56,6 @@ public interface UserMapper {
     void add(User user);
 
     /**
-     * 模糊查询
-     * @param user
-     * @return
-     */
-    List<User> vagueQuery(User user);
-
-    /**
      * 批量删除 参数绑定数组
      * @param ids
      */
@@ -72,4 +67,5 @@ public interface UserMapper {
      * @return
      */
     User checkUserByUsername(@Param("username") String username);
+
 }

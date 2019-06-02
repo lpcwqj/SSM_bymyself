@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加</title>
+    <title>add</title>
 </head>
 <body>
 <form id="form1" name="form1" action="/add" method="post">
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td colspan="1"></td>
-            <td><input type="submit" value="提交"></td>
+            <td><input type="submit" value="submit"></td>
         </tr>
     </table>
 </form>
