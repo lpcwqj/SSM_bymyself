@@ -16,7 +16,11 @@
     username: <input type="text" name="username" placeholder="Query by username">&nbsp;&nbsp;
     <%--rolename: <input type="text" name="id">&nbsp;&nbsp;--%>
     <input type="submit" value="Query">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button><a href="../jsp/add.jsp">AddUser</a></button>
 </form>
+
+<b style="color: red;font-size: 50px">${msg}</b>
 
 <form id="form1" name="form1" method="post" action="/batchDeletion">
     <table border="2" width="100%">
@@ -48,9 +52,6 @@
     </table>
 
     <button type="submit" name="deletes">BatchDeletion</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button><a href="../jsp/add.jsp">AddUser</a></button>
-
 
     <table align="center">
         <tr>
@@ -61,12 +62,12 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
                 <c:if test="${page.currentPage != 1}">
-                    <a href="/index?currentPage=1">Home</a>
-                    <a href="/index?currentPage=${page.currentPage-1}">Previous</a>
+                    <a href="/home?currentPage=1">Home</a>
+                    <a href="/home?currentPage=${page.currentPage-1}">Previous</a>
                 </c:if>
                 <c:if test="${page.currentPage != page.totalPage}">
-                    <a href="/index?currentPage=${page.currentPage+1} ">Next</a>
-                    <a href="/index?currentPage=${page.totalPage}">End</a>
+                    <a href="/home?currentPage=${page.currentPage+1} ">Next</a>
+                    <a href="/home?currentPage=${page.totalPage}">End</a>
                 </c:if>
             </span>
         </td>

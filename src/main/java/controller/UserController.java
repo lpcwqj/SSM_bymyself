@@ -27,8 +27,8 @@ public class UserController {
      * 验证密码是否正确 不正确进行提示进行重定向
      */
     @RequestMapping("login")
-    public String checkLogin(@RequestParam("username") String username,
-                             @RequestParam("password") String password,
+    public String checkLogin(@RequestParam(value = "username",required = false) String username,
+                             @RequestParam(value = "password",required = false) String password,
                              Model model,
                              HttpServletRequest request)
     {
@@ -51,20 +51,20 @@ public class UserController {
         }
         request.getSession().setAttribute("username",username);
         request.getSession().setAttribute("password",password);
-        return "redirect:index";
+        return "redirect:home";
     }
 
     /**
      * 跳转到主页面
      * 实现分页显示
      */
-    @RequestMapping("index")
+    @RequestMapping("home")
     public String findAll(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
                           Model model)
     {
         PageUtils<User> page = userService.findByPage(currentPage,null);
         model.addAttribute("page",page);
-        return "index";
+        return "home";
     }
 
     /**
@@ -114,7 +114,7 @@ public class UserController {
     public String update(User user)
     {
         userService.update(user);
-        return "redirect:/index";
+        return "redirect:/home";
     }
 
     /**
@@ -124,7 +124,7 @@ public class UserController {
     public String delete(@RequestParam(value = "id") Integer id)
     {
         userService.delete(id);
-        return "redirect:/index";
+        return "redirect:/home";
     }
 
     /**
@@ -134,7 +134,7 @@ public class UserController {
     public String batchDeletion(Integer[] ids)
     {
         userService.batchDeletion(ids);
-        return "redirect:/index";
+        return "redirect:/home";
     }
 
     /**
@@ -144,13 +144,11 @@ public class UserController {
     public String add(User user)
     {
         userService.add(user);
-        return "redirect:/index";
+        return "redirect:/home";
     }
 
     /**
      * 退出登录
-     * @param session
-     * @return
      */
     @RequestMapping("/outLogin")
     public String outLogin(HttpSession session)

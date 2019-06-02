@@ -14,6 +14,10 @@
     username: <input type="text" name="username" placeholder="Query by username">&nbsp;&nbsp;
     <%--rolename: <input type="text" name="id">&nbsp;&nbsp;--%>
     <input type="submit" value="Query">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button><a href="../jsp/add.jsp">AddUser</a></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button><a href="/home">return to home</a></button>
 </form>
 
 <form id="form1" name="form1" method="post" action="/batchDeletion">
@@ -46,10 +50,6 @@
     </table>
 
     <button type="submit" name="deletes">BatchDeletion</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button><a href="../jsp/add.jsp">AddUser</a></button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button><a href="/index">return to home</a></button>
 
     <table align="center">
         <tr>
@@ -80,7 +80,5 @@
         </tr>
     </table>
 </form>
-</body>
-</html>
 </body>
 </html>
