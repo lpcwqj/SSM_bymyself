@@ -8,20 +8,45 @@
 <html>
 <head>
     <title>fuzzy paging</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style type="text/css">
+        a:link,a:visited{
+            text-decoration:none;
+        }
+        body{
+            background-color: #eff5cf;
+        }
+    </style>
 </head>
 <body>
-<form id="form0" name="form1" method="post" action="/fuzzyQuery">
-    username: <input type="text" name="username" placeholder="Query by username">&nbsp;&nbsp;
-    <%--rolename: <input type="text" name="id">&nbsp;&nbsp;--%>
-    <input type="submit" value="Query">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button><a href="../jsp/add.jsp">AddUser</a></button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button><a href="/home">return to home</a></button>
-</form>
+<ul class="breadcrumb" style="font-size: 20px">
+    <li class="active">Position</li>
+    <li class="active">Query</li>
+    <li class="active">2019</li>
+</ul>
+
+<div style="padding: 0px 10px 10px 10px;">
+    <form id="form0" name="form1" method="post" action="/fuzzyQuery" class="bs-example bs-example-form" role="form">
+        User name&nbsp;
+        <input type="text"  name="username" placeholder="Query by username">
+        &nbsp;&nbsp;&nbsp;
+        <button type="submit" value="Query" class="btn btn-default" style="color: #2e6da4">Query</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-default"><a href="../jsp/add.jsp" >AddUser</a></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-default"><a href="/home">return to home</a></button>
+        <table align="right">
+            <tr>
+                <td><button type="submit" value="logout" class="btn btn-default"><a href="/logout">logout</a></button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <form id="form1" name="form1" method="post" action="/batchDeletion">
-    <table border="2" width="100%">
+    <table class="table table-hover" border="1" style="border-color:#9d9d9d">
         <thead>
         <tr align="center">
             <td><input type="checkbox" name="ids"></td>
@@ -42,41 +67,31 @@
                 <td>${user.email}</td>
                 <td>${user.phone}</td>
                 <td>${user.rolename}</td>
-                <td><button><a href="/toEdit?id=${user.id}">edit</a></button></td>
-                <td><button><a href="/delete?id=${user.id}">delete</a></button></td>
+                <td><button class="btn btn-default"><a href="/toEdit?id=${user.id}">edit</a></button></td>
+                <td><button class="btn btn-default"><a href="/delete?id=${user.id}">delete</a></button></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-    <button type="submit" name="deletes">BatchDeletion</button>
+    <button type="submit" name="deletes" class="btn btn-default" style="color: #2e6da4">BatchDeletion</button>&nbsp;&nbsp;&nbsp;<b style="color: red">${message}</b>
 
     <table align="center">
         <tr>
             <td>
-            <span>
-                The current page is ${page1.currentPage},with ${page1.totalPage} page and ${page1.totalRecord} records.Each page shows ${page1.pageSize} records
-            </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>
+                The current page is ${page1.currentPage}, with ${page1.totalPage} page and ${page1.totalRecord} records.
+                Each page shows ${page1.pageSize} records
+                <ul class="pager">
                 <c:if test="${page1.currentPage != 1}">
-                    <a href="/fuzzyQuery?currentPage=1">Home</a>
-                    <a href="/fuzzyQuery?currentPage=${page1.currentPage-1}">Previous</a>
+                    <li><a href="/fuzzyQuery?currentPage=1">Home</a></li>&nbsp;&nbsp;
+                    <li><a href="/fuzzyQuery?currentPage=${page1.currentPage-1}">Previous</a></li>&nbsp;&nbsp;
                 </c:if>
                 <c:if test="${page1.currentPage != page1.totalPage}">
-                    <a href="/fuzzyQuery?currentPage=${page1.currentPage+1} ">Next</a>
-                    <a href="/fuzzyQuery?currentPage=${page1.totalPage}">End</a>
+                    <li><a href="/fuzzyQuery?currentPage=${page1.currentPage+1} ">Next</a></li>&nbsp;&nbsp;
+                    <li><a href="/fuzzyQuery?currentPage=${page1.totalPage}">End</a></li>
                 </c:if>
-            </span>
+                </ul>
             </td>
-        </tr>
-    </table>
-</form>
-
-<form action="/outLogin">
-    <table align="right">
-        <tr>
-            <td><input type="submit" value="logout"></td>
         </tr>
     </table>
 </form>

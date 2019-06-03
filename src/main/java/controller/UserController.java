@@ -62,8 +62,14 @@ public class UserController {
      */
     @RequestMapping("home")
     public String findAll(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,
-                          Model model)
+                          Model model,
+                          HttpServletRequest request)
     {
+        String username_fuzzy = (String) request.getSession().getAttribute("username_fuzzy");
+        //点击return to home按钮后 删除刚输入的模糊字段的session值
+        if (username_fuzzy!=null){
+            request.getSession().removeAttribute("username_fuzzy");
+        }
         PageUtils<User> page = userService.findByPage(currentPage,null);
         model.addAttribute("page",page);
         return "home";
@@ -85,14 +91,18 @@ public class UserController {
 
         //第一次访问fuzzyQuery页面时，即第一页，模糊字段存入session中
         if (!"".equals(username) && username!=null){
-            request.getSession().setAttribute("username",username);
+            request.getSession().setAttribute("username_fuzzy",username);
             PageUtils<User> page = userService.findByPage(currentPage,username);
             model.addAttribute("page1",page);
         }
         //当点击下一页时 获取session中的模糊字段
         //此时 查询的两个条件齐了.currentPage是前台传过来的,username是获取之前存入session中、用户输入的模糊字段
         else {
-            String username1 = (String) request.getSession().getAttribute("username");
+            //如果第一次登录成功后立马点击模糊查询 判断session中是否有相应的值 没有则重定向
+            if (request.getSession().getAttribute("username_fuzzy")==null){
+                return "redirect:home";
+            }
+            String username1 = (String) request.getSession().getAttribute("username_fuzzy");
             PageUtils<User> page = userService.findByPage(currentPage,username1);
             model.addAttribute("page1",page);
         }
@@ -135,8 +145,18 @@ public class UserController {
      * 批量删除
      */
     @RequestMapping("batchDeletion")
-    public String batchDeletion(Integer[] ids)
+    public String batchDeletion(@RequestParam(required = false) Integer[] ids,
+                                Model model,
+                                HttpServletRequest request)
     {
+        String username_fuzzy = (String) request.getSession().getAttribute("username_fuzzy");
+        if (ids==null){
+            model.addAttribute("message","You have not selected in yet");
+            if (username_fuzzy==null||"".equals(username_fuzzy)){
+                return "forward:/home";
+            }
+            return "forward:/fuzzyQuery";
+        }
         userService.batchDeletion(ids);
         return "redirect:/home";
     }
@@ -154,7 +174,7 @@ public class UserController {
     /**
      * 退出登录
      */
-    @RequestMapping("/outLogin")
+    @RequestMapping("/logout")
     public String outLogin(HttpSession session)
     {
         session.invalidate();

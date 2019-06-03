@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public PageUtils<User> findByPage(int currentPage,String username){
         PageUtils<User> pageUtils = new PageUtils<User>();
         //定义每页显示的记录数
-        int pageSize = 5;
+        int pageSize = 7;
         //查询总记录数
         int totalRecord = userMapper.findAllRecords(username);
         //转成double类型方便查询总页数

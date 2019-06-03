@@ -9,40 +9,62 @@
 <html>
 <head>
     <title>edit</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{
+            background-color: #eff5cf;
+        }
+    </style>
 </head>
-<%--<script src="../js/jquery-2.1.0.js"></script>--%>
 <body>
-<form id="form1" name="form1" action="/update?id=${user.id}" method="post">
-    <table border="2" width="50%">
-        <tr>
-            <td>id</td>
-            <td>${user.id}</td>
-        </tr>
-        <tr>
-            <td>username</td>
-            <td><input type="text" name="username" value="${user.username}"/></td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td><input type="text" name="password" value="${user.password}"/></td>
-        </tr>
-        <tr>
-            <td>email</td>
-            <td><input type="text" name="email" value="${user.email}"/></td>
-        </tr>
-        <tr>
-            <td>phone</td>
-            <td><input type="text" name="phone" value="${user.phone}"/></td>
-        </tr>
-        <tr>
-            <td>rolename</td>
-            <td><input type="text" name="rolename" value="${user.rolename}"/><br></td>
-        </tr>
-        <tr>
-            <td colspan="1"></td>
-            <td><input type="submit" value="submit"></td>
-        </tr>
-    </table>
+<div style="width: 500px;padding: 20px">
+<form id="form1" name="form1" action="/update?id=${user.id}" method="post" class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">id</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="id" value="${user.id}" readonly="readonly">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">username</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" value="${user.username}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">password</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="password" value="${user.password}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="email" value="${user.email}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">phone</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="phone" value="${user.phone}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">rolename</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="rolename" value="${user.rolename}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">submit</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-default" onclick="javascript:history.back(-1)">return to home</button>
+        </div>
+    </div>
 </form>
+</div>
 </body>
 </html>

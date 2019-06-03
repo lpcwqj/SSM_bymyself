@@ -7,28 +7,36 @@
 <html>
 <head>
     <title>login</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style type="text/css">
+    body{
+        background-color: #eff5cf;
+    }
+</style>
 </head>
 <body>
+<div class="container" style="padding-top: 200px;padding-left: 50px">
+    <div class="form-horizontal col-md-offset-3">
+        <h3>Login</h3>
 <form action="/login" method="post">
-    <table border="2">
-    <tr>
-        <td>username:</td>
-        <td><input type="text" name="username"></td>
-    </tr>
-    <tr>
-        <td>password:</td>
-        <td><input type="text" name="password"></td>
-    </tr>
-    <tr>
-        <td colspan="1"></td>
-        <td><input type="submit" value="submit">
-            <input type="reset" value="reset">
-        </td>
-    </tr>
-    </table>
+    <div class="col-md-6">
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Username" name="username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Password" name="password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">submit</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary" type="reset">reset</button>
+        </div>
+        <b style="color: red;font-size: 15px;text-align: center">${msg}</b>
+    </div>
 </form>
-
-<b style="color: red;font-size: 50px">${msg}</b>
-
+    </div>
+</div>
 </body>
 </html>

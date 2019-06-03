@@ -13,6 +13,10 @@
 
     <context:component-scan base-package="dao,service,controller"/>
 
+    <!-- 对静态资源放行-->
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
     <!--配置拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>

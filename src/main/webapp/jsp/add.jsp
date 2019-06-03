@@ -8,35 +8,58 @@
 <html>
 <head>
     <title>add</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{
+            background-color: #eff5cf;
+        }
+    </style>
 </head>
 <body>
-<form id="form1" name="form1" action="/add" method="post">
-    <table border="2" width="50%">
-        <tr>
-            <td>username</td>
-            <td><input type="text" name="username" /></td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td><input type="text" name="password" /></td>
-        </tr>
-        <tr>
-            <td>email</td>
-            <td><input type="text" name="email" /></td>
-        </tr>
-        <tr>
-            <td>phone</td>
-            <td><input type="text" name="phone" /></td>
-        </tr>
-        <tr>
-            <td>rolename</td>
-            <td><input type="text" name="rolename" /><br></td>
-        </tr>
-        <tr>
-            <td colspan="1"></td>
-            <td><input type="submit" value="submit"></td>
-        </tr>
-    </table>
+<div style="width: 500px;padding: 20px">
+<form id="form1" name="form1" action="/add" method="post" class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">username</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="username">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">password</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">phone</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="phone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">rolename</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="rolename">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">submit</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn btn-primary">reset</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-default" onclick="javascript:history.back(-1)">return to home</button>
+        </div>
+    </div>
 </form>
+</div>
 </body>
 </html>
