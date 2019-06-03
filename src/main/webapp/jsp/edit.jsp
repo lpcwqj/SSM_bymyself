@@ -19,6 +19,12 @@
     </style>
 </head>
 <body>
+<ul class="breadcrumb" style="font-size: 20px">
+    <li class="active">Position</li>
+    <li class="active">Edit</li>
+    <li class="active">2019</li>
+</ul>
+
 <div style="width: 500px;padding: 20px">
 <form id="form1" name="form1" action="/update?id=${user.id}" method="post" class="form-horizontal" role="form">
     <div class="form-group">

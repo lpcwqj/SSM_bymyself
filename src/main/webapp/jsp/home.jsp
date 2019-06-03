@@ -32,7 +32,7 @@
 <div style="padding: 0px 10px 10px 10px;">
 <form id="form0" name="form1" method="post" action="/fuzzyQuery">
     User name&nbsp;
-    <input type="text"  name="username" placeholder="Query by username">
+    <input type="text" name="username" placeholder="Query by username" style="height: 30px">
     &nbsp;&nbsp;&nbsp;
     <button type="submit" value="Query" class="btn btn-default" style="color: #2e6da4">Query</button>
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -48,7 +48,7 @@
 <b style="color: red;font-size: 50px">${msg}</b>
 
 <form id="form1" name="form1" method="post" action="/batchDeletion">
-    <table class="table table-hover" border="1" style="border-color:#9d9d9d">
+    <table class="table table-hover" border="1px" style="border-color: #e9f5e3;font-size: 14px">
         <thead>
         <tr align="center">
             <td><input type="checkbox" name="ids"></td>
@@ -76,7 +76,7 @@
         </tbody>
     </table>
 
-    <button type="submit" name="deletes" class="btn btn-default"><a>BatchDeletion</a></button>&nbsp;&nbsp;&nbsp;<b style="color: red">${message}</b>
+    <button type="submit" name="deletes" class="btn btn-default" style="color: #2e6da4">BatchDeletion</button>&nbsp;&nbsp;&nbsp;<b style="color: red">${message}</b>
 
     <table align="center">
         <tr>
